@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 
-// #####################################
-// ############ IMPORTANT ##############
-// Here the `API_URL` env var is being
-// injected by the `server.js` file
-const api_url = process.env.API_URL || '';
-// ############ /IMPORTANT #############
-// #####################################
+// ###########################
+// ####### IMPORTANT #########
+// Removed `api_url` variable
 
 // This is an over-simplified component
 // which loads two strings via common
@@ -30,7 +26,10 @@ class HelloWorld extends Component {
   componentDidMount(){
     const self = this;
 
-    fetch(api_url + '/api/v1/hello')
+    // ###########################
+    // ####### IMPORTANT #########
+    // Removed `api_url` variable
+    fetch('/api/v1/hello')
       .then(function(response) {
         return response.text();
       }).then(function(text) {
@@ -39,7 +38,7 @@ class HelloWorld extends Component {
         });
       });
 
-    fetch(api_url + '/api/v1/world')
+    fetch('/api/v1/world')
       .then(function(response) {
         return response.text();
       }).then(function(text) {
@@ -47,6 +46,8 @@ class HelloWorld extends Component {
           world: text
         });
       });
+    // ####### /IMPORTANT ########
+    // ###########################
   }
 
   render() {

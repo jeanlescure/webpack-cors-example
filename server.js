@@ -2,14 +2,11 @@
 var webpack = require('webpack');
 var webpackDevServer = require('webpack-dev-server');
 var express = require('express');
-// #######################
-// ##### IMPORTANT #######
-// Adding `cors` package
-// so API allows calls by
-// front-end (Allow-all)
-var cors = require('cors');
-// ##### /IMPORTANT ######
-// #######################
+// #####################
+// ##### IMPORTANT #####
+// removed `cors` usage
+// ##### /IMPORTANT ####
+// #####################
 
 // Local files
 var config = require('./webpack.config.js');
@@ -26,13 +23,7 @@ if (process.env.NODE_ENV === 'dev-server') {
 
   // #########################################
   // ############## IMPORTANT ################
-  // Here we are injecting the API_URL env var
-  // to be used by the `HelloWorld` component
-  config.plugins.unshift(new webpack.DefinePlugin({
-    'process.env':{
-      'API_URL': JSON.stringify('http://localhost:8081')
-    }
-  }));
+  // Removed `API_URL` plugin injection here
   // ############## /IMPORTANT ###############
   // #########################################
 
@@ -51,9 +42,7 @@ if (process.env.NODE_ENV === 'dev-server') {
 
   // #####################
   // ##### IMPORTANT #####
-  // make express use the
-  // `cors` middleware
-  app.use(cors());
+  // removed `cors` usage
   // ##### /IMPORTANT ####
   // #####################
 
