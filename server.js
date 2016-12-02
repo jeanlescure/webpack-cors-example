@@ -30,9 +30,21 @@ if (process.env.NODE_ENV === 'dev-server') {
   // Initiate webpack-dev-server with the
   // config we created in `webpack.config.js`
   var compiler = webpack(config);
+  
+  // #########################################
+  // ############## IMPORTANT ################
+  // Added `proxy` configuration for API fix
   var server = new webpackDevServer(compiler, {
-    hot: true
+    hot: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8081',
+        secure: false
+      }
+    }
   });
+  // ############## /IMPORTANT ###############
+  // #########################################
 
   server.listen(8080);
 } else if (process.env.NODE_ENV === 'dev-api') {
