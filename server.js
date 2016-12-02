@@ -2,6 +2,14 @@
 var webpack = require('webpack');
 var webpackDevServer = require('webpack-dev-server');
 var express = require('express');
+// #######################
+// ##### IMPORTANT #######
+// Adding `cors` package
+// so API allows calls by
+// front-end (Allow-all)
+var cors = require('cors');
+// ##### /IMPORTANT ######
+// #######################
 
 // Local files
 var config = require('./webpack.config.js');
@@ -40,6 +48,14 @@ if (process.env.NODE_ENV === 'dev-server') {
   // = DEV =
   // This stands up the express.js API
   var app = express();
+
+  // #####################
+  // ##### IMPORTANT #####
+  // make express use the
+  // `cors` middleware
+  app.use(cors());
+  // ##### /IMPORTANT ####
+  // #####################
 
   // We define the API routes here
   api.defineApi(app);
